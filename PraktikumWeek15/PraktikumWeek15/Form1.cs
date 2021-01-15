@@ -22,8 +22,9 @@ namespace PraktikumWeek15
         public int[] hargamakan = new int[4];
         public int[] hargaminumjmb = new int[4];
         public int[] hargaminumnorm = new int[4];
-        public int[] hargapilihan = new int[100];
-        public int jumlahpesan = 0;
+        public static int totalharga = 0;
+        
+
 
         private void radioButtonMakan_CheckedChanged(object sender, EventArgs e)
         {
@@ -66,6 +67,8 @@ namespace PraktikumWeek15
             hargaminumjmb[1] = 5000;
             hargaminumjmb[2] = 10000;
             hargaminumjmb[3] = 5000;
+
+            
         }
 
         private void radioButtonMinum_CheckedChanged(object sender, EventArgs e)
@@ -92,7 +95,6 @@ namespace PraktikumWeek15
                 if (comboBoxMenu.SelectedIndex == 0)
                 {
                     labelAngkaHarga.Text = Convert.ToString(hargamakan[0]);
-                    hargapilihan[jumlahpesan] = hargamakan[0];
                 }
                 if (comboBoxMenu.SelectedIndex == 1)
                 {
@@ -109,57 +111,104 @@ namespace PraktikumWeek15
             }
             if (radioButtonMinum.Checked == true)
             {
-                
-                if (radioButtonJumbo.Checked == true)
+                if (comboBoxMenu.SelectedIndex == 0)
                 {
-                    
-                    if (comboBoxMenu.SelectedIndex == 0)
-                    {
+                    if (radioButtonJumbo.Checked == true)
+                    { 
                         labelAngkaHarga.Text = Convert.ToString(hargaminumjmb[0]);
                     }
-                    if (comboBoxMenu.SelectedIndex == 1)
-                    {
-                        labelAngkaHarga.Text = Convert.ToString(hargaminumjmb[1]);
-                    }
-                    if (comboBoxMenu.SelectedIndex == 2)
-                    {
-                        labelAngkaHarga.Text = Convert.ToString(hargaminumjmb[2]);
-                    }
-                    if (comboBoxMenu.SelectedIndex == 3)
-                    {
-                        labelAngkaHarga.Text = Convert.ToString(hargaminumjmb[3]);
-                    }
-                }
-                
-                if (radioButtonSzNorm.Checked == true)
-                {
 
-                    if (comboBoxMenu.SelectedIndex == 0)
+                    if (radioButtonSzNorm.Checked == true)
                     {
                         labelAngkaHarga.Text = Convert.ToString(hargaminumnorm[0]);
                     }
-                    if (comboBoxMenu.SelectedIndex == 1)
+                    
+                }
+                if (comboBoxMenu.SelectedIndex == 1)
+                {
+                    if (radioButtonJumbo.Checked == true)
+                    {
+                        labelAngkaHarga.Text = Convert.ToString(hargaminumjmb[1]);
+                    }
+
+                    if (radioButtonSzNorm.Checked == true)
                     {
                         labelAngkaHarga.Text = Convert.ToString(hargaminumnorm[1]);
                     }
-                    if (comboBoxMenu.SelectedIndex == 2)
+                    
+                }
+                if (comboBoxMenu.SelectedIndex == 2)
+                {
+                    if (radioButtonJumbo.Checked == true)
+                    {
+                        labelAngkaHarga.Text = Convert.ToString(hargaminumjmb[2]);
+                    }
+
+                    if (radioButtonSzNorm.Checked == true)
                     {
                         labelAngkaHarga.Text = Convert.ToString(hargaminumnorm[2]);
                     }
-                    if (comboBoxMenu.SelectedIndex == 3)
+                }
+                if (comboBoxMenu.SelectedIndex == 3)
+                {
+                    if (radioButtonJumbo.Checked == true)
+                    {
+                        labelAngkaHarga.Text = Convert.ToString(hargaminumjmb[3]);
+                    }
+
+                    if (radioButtonSzNorm.Checked == true)
                     {
                         labelAngkaHarga.Text = Convert.ToString(hargaminumnorm[3]);
                     }
                 }
+                
             }
 
         }
 
         private void buttonBuy_Click(object sender, EventArgs e)
         {
-            jumlahpesan++;
-            listBoxMenu.Items.Add(comboBoxMenu.SelectedIndex.ToString());
-            listBoxHarga.Items.Add(hargapilihan[jumlahpesan]);
+            listBoxMenu.Items.Add(comboBoxMenu.Text);
+            listBoxHarga.Items.Add(labelAngkaHarga.Text);
+
+            
+        }
+        private void ceklistbox()
+        {
+            if (listBoxMenu.Items.Count == 0)
+            {
+                buttonDelete.Enabled = false;
+            }
+            else
+            {
+                buttonDelete.Enabled = true;
+            }
+        }
+    
+
+        private void radioButtonSzNorm_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            listBoxHarga.Items.RemoveAt(listBoxMenu.SelectedIndex);
+            listBoxMenu.Items.RemoveAt(listBoxMenu.SelectedIndex);
+            ceklistbox();
+        }
+
+        private void buttonCheckOut_Click(object sender, EventArgs e)
+        {
+            if (listBoxMenu.Items.Count == 0)
+            {
+                MessageBox.Show("Choose Menu!!");
+            }
+            else
+            {
+                var formbayar = new Form2();
+                formbayar.Show();
+            }
         }
     }
 }

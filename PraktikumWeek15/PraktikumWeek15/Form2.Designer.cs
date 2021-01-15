@@ -71,6 +71,7 @@ namespace PraktikumWeek15
             this.buttonHitung.TabIndex = 2;
             this.buttonHitung.Text = "CALCULATE";
             this.buttonHitung.UseVisualStyleBackColor = true;
+            this.buttonHitung.Click += new System.EventHandler(this.buttonHitung_Click);
             // 
             // textBoxDiskon
             // 

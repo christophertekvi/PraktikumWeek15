@@ -16,5 +16,13 @@ namespace PraktikumWeek15
         {
             InitializeComponent();
         }
+        public static int subtotal = 0;
+        public static int tax = 0;
+        public static int disount = 0;
+        public static int total = 0;
+        private void buttonHitung_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

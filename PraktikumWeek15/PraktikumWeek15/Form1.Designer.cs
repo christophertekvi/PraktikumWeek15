@@ -188,6 +188,7 @@ namespace PraktikumWeek15
             this.radioButtonSzNorm.Text = "Normal";
             this.radioButtonSzNorm.UseVisualStyleBackColor = true;
             this.radioButtonSzNorm.Visible = false;
+            this.radioButtonSzNorm.CheckedChanged += new System.EventHandler(this.radioButtonSzNorm_CheckedChanged);
             // 
             // labelSize
             // 
@@ -210,12 +211,14 @@ namespace PraktikumWeek15
             // 
             // buttonDelete
             // 
+            this.buttonDelete.Enabled = false;
             this.buttonDelete.Location = new System.Drawing.Point(124, 331);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 12;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonCheckOut
             // 
@@ -225,6 +228,7 @@ namespace PraktikumWeek15
             this.buttonCheckOut.TabIndex = 13;
             this.buttonCheckOut.Text = "Check Out";
             this.buttonCheckOut.UseVisualStyleBackColor = true;
+            this.buttonCheckOut.Click += new System.EventHandler(this.buttonCheckOut_Click);
             // 
             // FormPesen
             // 
